@@ -52,7 +52,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export const Appbar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{backgroundColor:"#1E1E1E"}}> 
+      <AppBar position="static" sx={{ backgroundColor: "#1E1E1E" }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -72,12 +72,12 @@ export const Appbar = () => {
             FOODME
           </Typography>
           <Search>
-          <SearchIconWrapper>
+            <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search"
-              inputProps={{ 'aria-label': 'search' }}
+              inputProps={{ "aria-label": "search" }}
             />
           </Search>
         </Toolbar>
