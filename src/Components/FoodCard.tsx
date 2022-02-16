@@ -13,6 +13,7 @@ const useStyles = makeStyles(() =>
   createStyles({
     card: {
       width: 350,
+      height: 420,
       marginTop: 20,
     },
     buttons: {
@@ -24,10 +25,14 @@ const useStyles = makeStyles(() =>
       width: 300,
     },
     media: {
-        borderRadius: "5px",
-    }
+      borderRadius: "5px",
+    },
   })
 );
+
+// interface Props {
+//   recipeObj: {};
+// }
 
 export const FoodCard = () => {
   const classes = useStyles();

@@ -8,6 +8,7 @@ import { Fab, Grid, InputBase } from "@mui/material";
 import { AppIcon } from "./AppIcon";
 import React, { useState } from "react";
 import axios from "axios";
+import { setRecipes } from "../FoodDashboard";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -40,7 +41,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-
 const APP_ID = "de373656";
 const APP_KEY = "78dff67e91d43b69225411d9d98197ad";
 
@@ -52,7 +52,8 @@ export const Appbar = () => {
     const response = await axios.get(
       `https://api.edamam.com/search?q=${searchString}&app_id=${APP_ID}&app_key=${APP_KEY}`
     );
-    setRecipeList(response.data.hits);
+    //setRecipeList(response.data.hits);
+    setRecipes(response.data.hits);
   };
   const searchRecipe = (e: React.ChangeEvent<any>) => {
     fetchRecipe(searchField);
@@ -92,7 +93,10 @@ export const Appbar = () => {
             </Grid>
             <Grid item>
               <Search>
-                <Fab size="small" onClick={searchRecipe}>
+                <Fab
+                  sx={{ height: 40, width: 40, margin: 1 }}
+                  onClick={searchRecipe}
+                >
                   <SearchIcon />
                 </Fab>
                 <StyledInputBase

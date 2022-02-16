@@ -1,9 +1,18 @@
 import { Grid } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Appbar } from "./Components/Appbar";
 import { FoodCard } from "./Components/FoodCard";
 
+var recipes: any[] = [];
+
+export const setRecipes = (recipeList: any[]) => {
+  recipes = recipeList;
+  console.log(recipes);
+};
+
 export const FoodDashboard = () => {
+  const [recipesDisplaying, setRecipesDisplaying] = useState(recipes);
+
   return (
     <div>
       <Appbar />
@@ -13,15 +22,10 @@ export const FoodDashboard = () => {
         justifyContent="space-around"
         height="100vh"
       >
-        <Grid item>
-          <FoodCard />
-        </Grid>
-        <Grid item>
-          <FoodCard />
-        </Grid>
-        <Grid item>
-          <FoodCard />
-        </Grid>
+        {recipes.length &&
+          recipes.map((recipe) => {
+            return <FoodCard />;
+          })}
       </Grid>
     </div>
   );
