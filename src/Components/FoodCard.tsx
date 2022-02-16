@@ -5,10 +5,24 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
+import { createStyles, makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles(() =>
+  createStyles({
+    card: {
+      width: 250,
+    },
+  })
+);
 
 export const FoodCard = () => {
+  const classes = useStyles();
+
   return (
-    <Card sx={{ maxWidth: 345, backgroundColor: "#1E1E1E", color: "white" }}>
+    <Card
+      sx={{ maxWidth: 345, backgroundColor: "#1E1E1E", color: "white" }}
+      className={classes.card}
+    >
       <CardHeader title="Recipe" />
       <CardMedia
         component="img"

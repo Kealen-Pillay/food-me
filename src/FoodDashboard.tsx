@@ -1,15 +1,23 @@
 import { Grid } from "@mui/material";
 import React from "react";
+import { Appbar } from "./Components/Appbar";
 import { FoodCard } from "./Components/FoodCard";
 
 export const FoodDashboard = () => {
   return (
-      <Grid container direction="row" justifyContent="space-around" alignItems="center">
+    <div>
+      <Appbar />
+      <Grid
+        container
+        direction="row"
+        justifyContent="space-around"
+        alignItems="center"
+        height="100vh"
+      >
         <Grid item>
-          <FoodCard />
-          <FoodCard />
           <FoodCard />
         </Grid>
       </Grid>
+    </div>
   );
 };
