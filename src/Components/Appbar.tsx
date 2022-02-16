@@ -7,6 +7,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import { alpha, styled } from "@mui/material/styles";
 import { Grid, InputBase } from "@mui/material";
+import { AppIcon } from "./AppIcon";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -54,16 +55,28 @@ export const Appbar = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: "#1E1E1E" }}>
         <Toolbar>
-          <Grid container justifyContent="space-between" alignItems="center">
-            <Grid item>            
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-              >
-                FOODME
-              </Typography>
+          <Grid
+            container
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <Grid item>
+              <Grid container direction="row" alignItems="center" spacing={1}>
+                <Grid item>
+                  <AppIcon />
+                </Grid>
+                <Grid item>
+                  <Typography
+                    variant="h6"
+                    noWrap
+                    component="div"
+                    sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+                  >
+                    FOODME
+                  </Typography>
+                </Grid>
+              </Grid>
             </Grid>
             <Grid item>
               <Search>

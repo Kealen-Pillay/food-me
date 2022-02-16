@@ -18,11 +18,14 @@ const useStyles = makeStyles(() =>
     buttons: {
       backgroundColor: "#91bff2",
       "&:hover": {
-        backgroundColor: "#91bff2"
-    },
+        backgroundColor: "#91bff2",
+      },
       color: "#1E1E1E",
       width: 200,
     },
+    media: {
+        borderRadius: "5px",
+    }
   })
 );
 
@@ -35,12 +38,15 @@ export const FoodCard = () => {
       className={classes.card}
     >
       <CardHeader title="Recipe" />
-      <CardMedia
-        component="img"
-        height="194"
-        image="https://cdn-icons-png.flaticon.com/512/198/198416.png"
-        alt="Paella dish"
-      />
+      <CardContent className={classes.media}>
+        <CardMedia
+          component="img"
+          height="194"
+          image="http://www.properpizza.co.nz/beta/wp-content/uploads/2019/05/URBAN-LIST-Aucklands-Best-Pizza-Dantes.jpg"
+          alt="Paella dish"
+        />
+      </CardContent>
+
       <CardContent>
         <Grid
           container
