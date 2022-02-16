@@ -1,13 +1,12 @@
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import { alpha, styled } from "@mui/material/styles";
 import { Grid, InputBase } from "@mui/material";
 import { AppIcon } from "./AppIcon";
+import React from "react";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -51,6 +50,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export const Appbar = () => {
+  const onTextChange = (e: React.ChangeEvent<any>) => {
+    setTimeout(() => console.log("hi"), 1000);
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: "#1E1E1E" }}>
@@ -86,6 +89,7 @@ export const Appbar = () => {
                 <StyledInputBase
                   placeholder="Search"
                   inputProps={{ "aria-label": "search" }}
+                  onChange={onTextChange}
                 />
               </Search>
             </Grid>
