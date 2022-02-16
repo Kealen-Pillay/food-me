@@ -4,11 +4,10 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import SearchIcon from "@mui/icons-material/Search";
 import { alpha, styled } from "@mui/material/styles";
-import { Grid, InputBase } from "@mui/material";
+import { Fab, Grid, InputBase } from "@mui/material";
 import { AppIcon } from "./AppIcon";
 import React, { useState } from "react";
 import axios from "axios";
-import { debounce } from "lodash";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -23,16 +22,6 @@ const Search = styled("div")(({ theme }) => ({
     marginLeft: theme.spacing(1),
     width: "auto",
   },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -51,11 +40,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+
 const APP_ID = "de373656";
 const APP_KEY = "78dff67e91d43b69225411d9d98197ad";
 
 export const Appbar = () => {
   const [recipeList, setRecipeList] = useState([]);
+  const [searchField, setSearchField] = useState("");
 
   const fetchRecipe = async (searchString: string) => {
     const response = await axios.get(
@@ -63,8 +54,13 @@ export const Appbar = () => {
     );
     setRecipeList(response.data.hits);
   };
+  const searchRecipe = (e: React.ChangeEvent<any>) => {
+    fetchRecipe(searchField);
+  };
+
   const onTextChange = (e: React.ChangeEvent<any>) => {
-    const timeout = setTimeout(() => fetchRecipe(e.target.value), 500);
+    e.preventDefault();
+    setSearchField(e.target.value);
   };
 
   return (
@@ -96,9 +92,9 @@ export const Appbar = () => {
             </Grid>
             <Grid item>
               <Search>
-                <SearchIconWrapper>
+                <Fab size="small" onClick={searchRecipe}>
                   <SearchIcon />
-                </SearchIconWrapper>
+                </Fab>
                 <StyledInputBase
                   placeholder="Search"
                   inputProps={{ "aria-label": "search" }}
