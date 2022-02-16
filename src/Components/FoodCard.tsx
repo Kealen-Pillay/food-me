@@ -1,8 +1,10 @@
 import {
+  Button,
   Card,
   CardContent,
   CardHeader,
   CardMedia,
+  Grid,
   Typography,
 } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
@@ -12,6 +14,14 @@ const useStyles = makeStyles(() =>
     card: {
       width: 250,
       marginTop: 20,
+    },
+    buttons: {
+      backgroundColor: "#91bff2",
+      "&:hover": {
+        backgroundColor: "#91bff2"
+    },
+      color: "#1E1E1E",
+      width: 200,
     },
   })
 );
@@ -32,13 +42,24 @@ export const FoodCard = () => {
         alt="Paella dish"
       />
       <CardContent>
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          sx={{ color: "white" }}
+        <Grid
+          container
+          alignItems="center"
+          direction="column"
+          justifyContent="space-between"
+          spacing={1}
         >
-          Recipe Body
-        </Typography>
+          <Grid item>
+            <Button className={classes.buttons}>
+              <Typography>Ingredients</Typography>
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button className={classes.buttons}>
+              <Typography>Recipe</Typography>
+            </Button>
+          </Grid>
+        </Grid>
       </CardContent>
     </Card>
   );
