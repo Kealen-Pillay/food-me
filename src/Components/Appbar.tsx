@@ -6,7 +6,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import { alpha, styled } from "@mui/material/styles";
 import { Grid, InputBase } from "@mui/material";
 import { AppIcon } from "./AppIcon";
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import { debounce } from "lodash";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -49,9 +51,20 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+const APP_ID = "de373656";
+const APP_KEY = "78dff67e91d43b69225411d9d98197ad";
+
 export const Appbar = () => {
+  const [recipeList, setRecipeList] = useState([]);
+
+  const fetchRecipe = async (searchString: string) => {
+    const response = await axios.get(
+      `https://api.edamam.com/search?q=${searchString}&app_id=${APP_ID}&app_key=${APP_KEY}`
+    );
+    setRecipeList(response.data.hits);
+  };
   const onTextChange = (e: React.ChangeEvent<any>) => {
-    setTimeout(() => console.log("hi"), 1000);
+    const timeout = setTimeout(() => fetchRecipe(e.target.value), 500);
   };
 
   return (
