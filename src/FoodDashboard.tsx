@@ -11,9 +11,14 @@ export const FoodDashboard = () => {
         container
         direction="row"
         justifyContent="space-around"
-        alignItems="center"
         height="100vh"
       >
+        <Grid item>
+          <FoodCard />
+        </Grid>
+        <Grid item>
+          <FoodCard />
+        </Grid>
         <Grid item>
           <FoodCard />
         </Grid>
