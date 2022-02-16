@@ -12,7 +12,7 @@ import { createStyles, makeStyles } from "@mui/styles";
 const useStyles = makeStyles(() =>
   createStyles({
     card: {
-      width: 250,
+      width: 350,
       marginTop: 20,
     },
     buttons: {
@@ -21,7 +21,7 @@ const useStyles = makeStyles(() =>
         backgroundColor: "#91bff2",
       },
       color: "#1E1E1E",
-      width: 200,
+      width: 300,
     },
     media: {
         borderRadius: "5px",
