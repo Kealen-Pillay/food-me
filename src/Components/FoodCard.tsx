@@ -29,26 +29,23 @@ const useStyles = makeStyles(() =>
     },
   })
 );
+interface Props {
+  recipeObj: any;
+}
 
-// interface Props {
-//   recipeObj: {};
-// }
-
-export const FoodCard = () => {
+export const FoodCard = ({ recipeObj }: Props) => {
   const classes = useStyles();
-
   return (
     <Card
       sx={{ maxWidth: 345, backgroundColor: "#1E1E1E", color: "white" }}
       className={classes.card}
     >
-      <CardHeader title="Recipe" />
+      <CardHeader title={recipeObj.recipe.label} titleTypographyProps={{variant:'h6' }}/>
       <CardContent className={classes.media}>
         <CardMedia
           component="img"
           height="194"
-          image="http://www.properpizza.co.nz/beta/wp-content/uploads/2019/05/URBAN-LIST-Aucklands-Best-Pizza-Dantes.jpg"
-          alt="Paella dish"
+          image={recipeObj.recipe.image}
         />
       </CardContent>
 
