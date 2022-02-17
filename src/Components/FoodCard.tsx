@@ -63,7 +63,7 @@ export const FoodCard = ({ recipeObj }: Props) => {
             </Button>
           </Grid>
           <Grid item>
-            <Button className={classes.buttons}>
+            <Button className={classes.buttons} onClick={() => window.open(recipeObj.recipe.url)}>
               <Typography>Recipe</Typography>
             </Button>
           </Grid>
