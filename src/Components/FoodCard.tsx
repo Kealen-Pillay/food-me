@@ -2,42 +2,44 @@ import {
   Button,
   Card,
   CardContent,
-  CardHeader,
   CardMedia,
   Grid,
   Typography,
   Dialog,
   DialogTitle,
   DialogContent,
+  Fab,
 } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
 import { useState } from "react";
 import { IngredientCard } from "./IngredientCard";
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import LocalDiningIcon from '@mui/icons-material/LocalDining';
 
 const useStyles = makeStyles(() =>
   createStyles({
     card: {
       width: 300,
-      height: 420,
+      height: 380,
       marginTop: 20,
     },
     buttons: {
-      backgroundColor: "#d0d6d2",
+      backgroundColor: "#658feb",
       "&:hover": {
-        backgroundColor: "#91edab",
+        backgroundColor: "#c4c4c4",
       },
       color: "#1E1E1E",
-      width: 270,
-    },
-    media: {
-      borderRadius: "10px",
     },
     dialogCloseButton: {
       backgroundColor: "#1E1E1E",
       "&:hover": {
         backgroundColor: "#1E1E1E",
       },
-      margin:10,
+      margin: 10,
+    },
+    media:{
+      borderRadius: "2px",
+      overflow: "hidden",
     },
   })
 );
@@ -53,7 +55,10 @@ export const FoodCard = ({ recipeObj }: Props) => {
 
   return (
     <>
-      <Dialog open={open} PaperProps={{style:{backgroundColor: "#91edab"}}}>
+      <Dialog
+        open={open}
+        PaperProps={{ style: { backgroundColor: "#658feb" } }}
+      >
         <DialogTitle>Ingredients</DialogTitle>
         <DialogContent>
           <Grid container direction="column" spacing={1}>
@@ -66,21 +71,28 @@ export const FoodCard = ({ recipeObj }: Props) => {
             })}
           </Grid>
         </DialogContent>
-        <Button variant="contained" onClick={() => setOpen(false)} className={classes.dialogCloseButton}>Close</Button>
+        <Button
+          variant="contained"
+          onClick={() => setOpen(false)}
+          className={classes.dialogCloseButton}
+        >
+          Close
+        </Button>
       </Dialog>
+
       <Card
         sx={{ maxWidth: 500, backgroundColor: "#1E1E1E", color: "white" }}
         className={classes.card}
       >
-        <CardHeader
-          title={recipeObj.recipe.label}
-          titleTypographyProps={{ variant: "subtitle1" }}
-        />
-        <CardContent className={classes.media}>
+        <CardContent>
+          <Typography align="left">{recipeObj.recipe.label}</Typography>
+        </CardContent>
+        <CardContent>
           <CardMedia
             component="img"
             height="194"
             image={recipeObj.recipe.image}
+            className={classes.media}
           />
         </CardContent>
 
@@ -88,22 +100,19 @@ export const FoodCard = ({ recipeObj }: Props) => {
           <Grid
             container
             alignItems="center"
-            direction="column"
-            justifyContent="space-between"
+            direction="row"
+            justifyContent="space-around"
             spacing={1}
           >
-            <Grid item>
-              <Button className={classes.buttons} onClick={() => setOpen(true)}>
-                <Typography>Ingredients</Typography>
-              </Button>
+             <Grid item>
+              <Fab onClick={() => setOpen(true)} className={classes.buttons}>
+                <FormatListBulletedIcon/>
+              </Fab>
             </Grid>
             <Grid item>
-              <Button
-                className={classes.buttons}
-                onClick={() => window.open(recipeObj.recipe.url)}
-              >
-                <Typography>Recipe</Typography>
-              </Button>
+              <Fab className={classes.buttons} onClick={() => window.open(recipeObj.recipe.url)}>
+                <LocalDiningIcon/>
+              </Fab>
             </Grid>
           </Grid>
         </CardContent>
