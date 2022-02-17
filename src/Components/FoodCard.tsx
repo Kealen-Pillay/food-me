@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
 import { useState } from "react";
+import { IngredientCard } from "./IngredientCard";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -31,6 +32,9 @@ const useStyles = makeStyles(() =>
     media: {
       borderRadius: "5px",
     },
+    dialog: {
+      color: "#1E1E1E",
+    },
   })
 );
 
@@ -45,14 +49,19 @@ export const FoodCard = ({ recipeObj }: Props) => {
 
   return (
     <>
-      <Dialog open={open}>
+      <Dialog open={open} className={classes.dialog}>
         <DialogTitle>Ingredients</DialogTitle>
-        <DialogContent>{
-          recipeObj.recipe.ingredients.map((ingredient:any) => {
-            return <Typography>
-              {ingredient.text}
-            </Typography>
-          })}</DialogContent>
+        <DialogContent>
+          <Grid container direction="column" spacing={1}>
+            {recipeObj.recipe.ingredients.map((ingredient: any) => {
+              return (
+                <Grid item>
+                  <IngredientCard ingredient={ingredient.text} />
+                </Grid>
+              );
+            })}
+          </Grid>
+        </DialogContent>
         <Button onClick={() => setOpen(false)}>Close</Button>
       </Dialog>
       <Card
