@@ -17,7 +17,7 @@ import { IngredientCard } from "./IngredientCard";
 const useStyles = makeStyles(() =>
   createStyles({
     card: {
-      width: 350,
+      width: 450,
       height: 420,
       marginTop: 20,
     },
@@ -32,8 +32,12 @@ const useStyles = makeStyles(() =>
     media: {
       borderRadius: "5px",
     },
-    dialog: {
-      color: "#1E1E1E",
+    dialogCloseButton: {
+      backgroundColor: "#1E1E1E",
+      "&:hover": {
+        backgroundColor: "#1E1E1E",
+      },
+      margin:10,
     },
   })
 );
@@ -49,7 +53,7 @@ export const FoodCard = ({ recipeObj }: Props) => {
 
   return (
     <>
-      <Dialog open={open} className={classes.dialog}>
+      <Dialog open={open} PaperProps={{style:{backgroundColor: "#91bff2"}}}>
         <DialogTitle>Ingredients</DialogTitle>
         <DialogContent>
           <Grid container direction="column" spacing={1}>
@@ -62,15 +66,15 @@ export const FoodCard = ({ recipeObj }: Props) => {
             })}
           </Grid>
         </DialogContent>
-        <Button onClick={() => setOpen(false)}>Close</Button>
+        <Button variant="contained" onClick={() => setOpen(false)} className={classes.dialogCloseButton}>Close</Button>
       </Dialog>
       <Card
-        sx={{ maxWidth: 345, backgroundColor: "#1E1E1E", color: "white" }}
+        sx={{ maxWidth: 500, backgroundColor: "#1E1E1E", color: "white" }}
         className={classes.card}
       >
         <CardHeader
           title={recipeObj.recipe.label}
-          titleTypographyProps={{ variant: "h6" }}
+          titleTypographyProps={{ variant: "subtitle1" }}
         />
         <CardContent className={classes.media}>
           <CardMedia

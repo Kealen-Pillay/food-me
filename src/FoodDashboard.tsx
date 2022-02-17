@@ -125,7 +125,11 @@ export const FoodDashboard = () => {
         height="100vh"
       >
         {recipeList.map((recipeObj) => {
-          return <FoodCard recipeObj={recipeObj} />;
+          return (
+            <Grid item>
+              <FoodCard recipeObj={recipeObj} />
+            </Grid>
+          );
         })}
       </Grid>
     </div>
