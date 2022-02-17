@@ -10,6 +10,7 @@ import { Fab, Grid, InputBase } from "@mui/material";
 
 import axios from "axios";
 import { AppIcon } from "./Components/AppIcon";
+import { ClassNames } from "@emotion/react";
 
 export const FoodDashboard = () => {
   const [recipeList, setRecipeList] = useState([]);
@@ -32,8 +33,9 @@ export const FoodDashboard = () => {
   const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: "inherit",
     "& .MuiInputBase-input": {
-      padding: theme.spacing(1, 1, 1, 0),
-      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+      // padding: theme.spacing(1, 1, 1, 0),
+      paddingLeft: theme.spacing(3),
+      paddingTop: theme.spacing(-2),
       transition: theme.transitions.create("width"),
       width: "100%",
       [theme.breakpoints.up("sm")]: {
@@ -94,12 +96,23 @@ export const FoodDashboard = () => {
                 </Grid>
               </Grid>
               <Grid item>
-                <Search>
+                <Search sx={{ height: 45 }}>
                   <Fab
-                    sx={{ height: 40, width: 40, margin: 1 }}
+                    sx={{
+                      height: 30,
+                      width: 35,
+                      marginTop: 0.5,
+                      marginLeft: 1,
+                      marginBottom: 0.5,
+                      backgroundColor: "#1E1E1E",
+                      color: "white",
+                      "&.MuiButtonBase-root:hover": {
+                        bgcolor: "#1E1E1E"
+                      }
+                    }}
                     onClick={searchRecipe}
                   >
-                    <SearchIcon />
+                    <SearchIcon sx={{ height: 20, width: 20 }} />
                   </Fab>
                   <StyledInputBase
                     placeholder="Search"
