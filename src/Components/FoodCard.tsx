@@ -17,20 +17,20 @@ import { IngredientCard } from "./IngredientCard";
 const useStyles = makeStyles(() =>
   createStyles({
     card: {
-      width: 450,
+      width: 300,
       height: 420,
       marginTop: 20,
     },
     buttons: {
-      backgroundColor: "#91bff2",
+      backgroundColor: "#d0d6d2",
       "&:hover": {
-        backgroundColor: "#91bff2",
+        backgroundColor: "#91edab",
       },
       color: "#1E1E1E",
-      width: 300,
+      width: 270,
     },
     media: {
-      borderRadius: "5px",
+      borderRadius: "10px",
     },
     dialogCloseButton: {
       backgroundColor: "#1E1E1E",
@@ -53,7 +53,7 @@ export const FoodCard = ({ recipeObj }: Props) => {
 
   return (
     <>
-      <Dialog open={open} PaperProps={{style:{backgroundColor: "#91bff2"}}}>
+      <Dialog open={open} PaperProps={{style:{backgroundColor: "#91edab"}}}>
         <DialogTitle>Ingredients</DialogTitle>
         <DialogContent>
           <Grid container direction="column" spacing={1}>
