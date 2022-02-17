@@ -90,41 +90,32 @@ export const FoodCard = ({ recipeObj }: Props) => {
           image={recipeObj.recipe.image}
         />
         <CardContent>
-          <Grid container direction="column" alignItems="center" justifyContent="space-between">
-            <Grid item>
-              <Typography gutterBottom variant="h6" component="div">
-                {recipeObj.recipe.label}
-              </Typography>
-            </Grid>
-            <Grid item>
-              <CardContent>
-                <Grid
-                  container
-                  alignItems="center"
-                  direction="row"
-                  justifyContent="space-around"
-                  spacing={1}
+          <Typography gutterBottom variant="h6" component="div">
+            {recipeObj.recipe.label}
+          </Typography>
+          <CardContent>
+            <Grid
+              container
+              alignItems="center"
+              direction="row"
+              justifyContent="space-around"
+              spacing={1}
+            >
+              <Grid item>
+                <Fab onClick={() => setOpen(true)} className={classes.buttons}>
+                  <FormatListBulletedIcon />
+                </Fab>
+              </Grid>
+              <Grid item>
+                <Fab
+                  className={classes.buttons}
+                  onClick={() => window.open(recipeObj.recipe.url)}
                 >
-                  <Grid item>
-                    <Fab
-                      onClick={() => setOpen(true)}
-                      className={classes.buttons}
-                    >
-                      <FormatListBulletedIcon />
-                    </Fab>
-                  </Grid>
-                  <Grid item>
-                    <Fab
-                      className={classes.buttons}
-                      onClick={() => window.open(recipeObj.recipe.url)}
-                    >
-                      <LocalDiningIcon />
-                    </Fab>
-                  </Grid>
-                </Grid>
-              </CardContent>
+                  <LocalDiningIcon />
+                </Fab>
+              </Grid>
             </Grid>
-          </Grid>
+          </CardContent>
         </CardContent>
       </Card>
     </>
