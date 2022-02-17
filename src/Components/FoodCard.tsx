@@ -13,14 +13,14 @@ import {
 import { createStyles, makeStyles } from "@mui/styles";
 import { useState } from "react";
 import { IngredientCard } from "./IngredientCard";
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import LocalDiningIcon from '@mui/icons-material/LocalDining';
+import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
+import LocalDiningIcon from "@mui/icons-material/LocalDining";
 
 const useStyles = makeStyles(() =>
   createStyles({
     card: {
       width: 300,
-      height: 380,
+      height: 320,
       marginTop: 20,
     },
     buttons: {
@@ -37,7 +37,7 @@ const useStyles = makeStyles(() =>
       },
       margin: 10,
     },
-    media:{
+    media: {
       borderRadius: "2px",
       overflow: "hidden",
     },
@@ -79,40 +79,50 @@ export const FoodCard = ({ recipeObj }: Props) => {
           Close
         </Button>
       </Dialog>
-
       <Card
-        sx={{ maxWidth: 500, backgroundColor: "#1E1E1E", color: "white" }}
+        variant="outlined"
+        sx={{ maxWidth: 345, backgroundColor: "#1E1E1E", color: "white" }}
         className={classes.card}
       >
+        <CardMedia
+          component="img"
+          height="140"
+          image={recipeObj.recipe.image}
+        />
         <CardContent>
-          <Typography align="left">{recipeObj.recipe.label}</Typography>
-        </CardContent>
-        <CardContent>
-          <CardMedia
-            component="img"
-            height="194"
-            image={recipeObj.recipe.image}
-            className={classes.media}
-          />
-        </CardContent>
-
-        <CardContent>
-          <Grid
-            container
-            alignItems="center"
-            direction="row"
-            justifyContent="space-around"
-            spacing={1}
-          >
-             <Grid item>
-              <Fab onClick={() => setOpen(true)} className={classes.buttons}>
-                <FormatListBulletedIcon/>
-              </Fab>
+          <Grid container direction="column" alignItems="center" justifyContent="space-between">
+            <Grid item>
+              <Typography gutterBottom variant="h6" component="div">
+                {recipeObj.recipe.label}
+              </Typography>
             </Grid>
             <Grid item>
-              <Fab className={classes.buttons} onClick={() => window.open(recipeObj.recipe.url)}>
-                <LocalDiningIcon/>
-              </Fab>
+              <CardContent>
+                <Grid
+                  container
+                  alignItems="center"
+                  direction="row"
+                  justifyContent="space-around"
+                  spacing={1}
+                >
+                  <Grid item>
+                    <Fab
+                      onClick={() => setOpen(true)}
+                      className={classes.buttons}
+                    >
+                      <FormatListBulletedIcon />
+                    </Fab>
+                  </Grid>
+                  <Grid item>
+                    <Fab
+                      className={classes.buttons}
+                      onClick={() => window.open(recipeObj.recipe.url)}
+                    >
+                      <LocalDiningIcon />
+                    </Fab>
+                  </Grid>
+                </Grid>
+              </CardContent>
             </Grid>
           </Grid>
         </CardContent>
