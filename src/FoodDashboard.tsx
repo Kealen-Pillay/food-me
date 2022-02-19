@@ -10,7 +10,6 @@ import { Fab, Grid, InputBase } from "@mui/material";
 
 import axios from "axios";
 import { AppIcon } from "./Components/AppIcon";
-import { ClassNames } from "@emotion/react";
 
 export const FoodDashboard = () => {
   const [recipeList, setRecipeList] = useState([]);
@@ -33,7 +32,6 @@ export const FoodDashboard = () => {
   const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: "inherit",
     "& .MuiInputBase-input": {
-      // padding: theme.spacing(1, 1, 1, 0),
       paddingLeft: theme.spacing(3),
       paddingTop: theme.spacing(-2),
       transition: theme.transitions.create("width"),
@@ -79,7 +77,13 @@ export const FoodDashboard = () => {
               alignItems="center"
             >
               <Grid item>
-                <Grid container direction="row" alignItems="center" spacing={1}>
+                <Grid
+                  container
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="space-between"
+                  spacing={1}
+                >
                   <Grid item>
                     <AppIcon />
                   </Grid>
@@ -107,8 +111,8 @@ export const FoodDashboard = () => {
                       backgroundColor: "#1E1E1E",
                       color: "white",
                       "&.MuiButtonBase-root:hover": {
-                        bgcolor: "#1E1E1E"
-                      }
+                        bgcolor: "#1E1E1E",
+                      },
                     }}
                     onClick={searchRecipe}
                   >
