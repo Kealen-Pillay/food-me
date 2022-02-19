@@ -81,7 +81,7 @@ export const FoodCard = ({ recipeObj }: Props) => {
       </Dialog>
       <Card
         variant="outlined"
-        sx={{ maxWidth: 345, backgroundColor: "#1E1E1E", color: "white" }}
+        sx={{ maxWidth: 345, backgroundColor: "#1E1E1E", color: "white"}}
         className={classes.card}
       >
         <CardMedia
@@ -89,17 +89,24 @@ export const FoodCard = ({ recipeObj }: Props) => {
           height="140"
           image={recipeObj.recipe.image}
         />
-        <CardContent>
-          <Typography gutterBottom variant="h6" component="div">
-            {recipeObj.recipe.label}
-          </Typography>
-          <CardContent>
+        <Grid container direction="column" justifyContent="space-between" height="50%">
+          <Grid item>
+            <Typography
+              gutterBottom
+              variant="h6"
+              component="div"
+              sx={{ margin: 2 }}
+            >
+              {recipeObj.recipe.label}
+            </Typography>
+          </Grid>
+          <Grid item>
             <Grid
               container
               alignItems="center"
               direction="row"
               justifyContent="space-around"
-              spacing={1}
+              height="100%"
             >
               <Grid item>
                 <Fab onClick={() => setOpen(true)} className={classes.buttons}>
@@ -115,8 +122,8 @@ export const FoodCard = ({ recipeObj }: Props) => {
                 </Fab>
               </Grid>
             </Grid>
-          </CardContent>
-        </CardContent>
+          </Grid>
+        </Grid>
       </Card>
     </>
   );
