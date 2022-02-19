@@ -9,19 +9,35 @@ import {
   DialogTitle,
   DialogContent,
   Fab,
+  CardActions,
 } from "@mui/material";
-import { createStyles, makeStyles } from "@mui/styles";
+import { createStyles, makeStyles, styled } from "@mui/styles";
 import { useState } from "react";
 import { IngredientCard } from "./IngredientCard";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
+import IconButton, { IconButtonProps } from "@mui/material/IconButton";
+import Collapse from "@mui/material/Collapse";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
+interface ExpandMoreProps extends IconButtonProps {
+  expand: boolean;
+}
+
+const ExpandMore = styled((props: ExpandMoreProps) => {
+  const { expand, ...other } = props;
+  return <IconButton {...other} />;
+})(({ theme, expand }) => ({
+  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+  marginLeft: "auto",
+}));
 
 const useStyles = makeStyles(() =>
   createStyles({
     card: {
       width: 300,
-      height: 320,
       marginTop: 20,
+      marginBottom:20,
     },
     buttons: {
       backgroundColor: "#658feb",
@@ -41,6 +57,9 @@ const useStyles = makeStyles(() =>
       borderRadius: "2px",
       overflow: "hidden",
     },
+    expandIcon: {
+      color: "white",
+    },
   })
 );
 
@@ -52,6 +71,11 @@ export const FoodCard = ({ recipeObj }: Props) => {
   console.log(recipeObj.recipe);
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
 
   return (
     <>
@@ -80,27 +104,97 @@ export const FoodCard = ({ recipeObj }: Props) => {
         </Button>
       </Dialog>
       <Card
-        variant="outlined"
-        sx={{ maxWidth: 345, backgroundColor: "#1E1E1E", color: "white"}}
+        sx={{ maxWidth: 345, backgroundColor: "#1E1E1E"}}
         className={classes.card}
+        variant="outlined"
       >
         <CardMedia
           component="img"
-          height="140"
+          height="150"
           image={recipeObj.recipe.image}
         />
-        <Grid container direction="column" justifyContent="space-between" height="50%">
-          <Grid item>
-            <Typography
-              gutterBottom
-              variant="h6"
-              component="div"
-              sx={{ margin: 2 }}
+        <CardContent>
+          <Typography variant="body1" sx={{ color: "white" }}>
+            {recipeObj.recipe.label}
+          </Typography>
+        </CardContent>
+        <CardActions disableSpacing>
+          <ExpandMore
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon className={classes.expandIcon} />
+          </ExpandMore>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <Grid
+              container
+              alignItems="flex-start"
+              direction="column"
+              spacing={2}
+              height="100%"
             >
-              {recipeObj.recipe.label}
-            </Typography>
-          </Grid>
-          <Grid item>
+              <Grid item>
+                <Grid
+                  container
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="space-between"
+                  width="100%"
+                >
+                  <Grid item>
+                    <Fab
+                      onClick={() => setOpen(true)}
+                      className={classes.buttons}
+                    >
+                      <FormatListBulletedIcon />
+                    </Fab>
+                  </Grid>
+                  <Grid item>
+                    <Typography
+                      sx={{ color: "white", marginLeft: 2 }}
+                      variant="h6"
+                    >
+                      Ingredients
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item>
+                <Grid
+                  container
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="space-between"
+                  width="100%"
+                >
+                  <Grid item>
+                    <Fab
+                      className={classes.buttons}
+                      onClick={() => window.open(recipeObj.recipe.url)}
+                    >
+                      <LocalDiningIcon />
+                    </Fab>
+                  </Grid>
+                  <Grid item>
+                    <Typography
+                      sx={{ color: "white", marginLeft: 2 }}
+                      variant="h6"
+                    >
+                      Recipe
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
+          </CardContent>
+        </Collapse>
+      </Card>
+
+      {/* <Grid item>
             <Grid
               container
               alignItems="center"
@@ -122,9 +216,7 @@ export const FoodCard = ({ recipeObj }: Props) => {
                 </Fab>
               </Grid>
             </Grid>
-          </Grid>
-        </Grid>
-      </Card>
+          </Grid> */}
     </>
   );
 };
