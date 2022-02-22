@@ -37,7 +37,7 @@ const useStyles = makeStyles(() =>
     card: {
       width: 300,
       marginTop: 20,
-      marginBottom:20,
+      marginBottom: 20,
     },
     buttons: {
       backgroundColor: "#658feb",
@@ -104,7 +104,7 @@ export const FoodCard = ({ recipeObj }: Props) => {
         </Button>
       </Dialog>
       <Card
-        sx={{ maxWidth: 345, backgroundColor: "#1E1E1E"}}
+        sx={{ maxWidth: 345, backgroundColor: "#1E1E1E" }}
         className={classes.card}
         variant="outlined"
       >
@@ -114,9 +114,15 @@ export const FoodCard = ({ recipeObj }: Props) => {
           image={recipeObj.recipe.image}
         />
         <CardContent>
-          <Typography variant="body1" sx={{ color: "white" }}>
-            {recipeObj.recipe.label}
-          </Typography>
+          {expanded ? (
+            <Typography variant="body1" sx={{ color: "white" }}>
+              {recipeObj.recipe.label}
+            </Typography>
+          ) : (
+            <Typography noWrap variant="body1" sx={{ color: "white" }}>
+              {recipeObj.recipe.label}
+            </Typography>
+          )}
         </CardContent>
         <CardActions disableSpacing>
           <ExpandMore
